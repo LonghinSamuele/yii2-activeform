@@ -1,5 +1,5 @@
 {
-  "name": "longhinsamuele/yii2-activeform",
+  "name": "samuelelonghin/yii2-activeform",
   "description": "new Yii2 ActiveForm ",
   "type": "yii2-extension",
   "keywords": [
@@ -20,7 +20,7 @@
     "yiisoft/yii2": "*",
     "yiisoft/yii2-bootstrap4": "^2.0",
     "kartik-v/yii2-widget-select2": "@dev",
-    "longhinsamuele/yii2-round-switch-input": "*"
+    "samuelelonghin/yii2-round-switch-input": "*"
   },
   "autoload": {
     "psr-4": {
