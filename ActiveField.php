@@ -12,6 +12,9 @@ use yii\helpers\ArrayHelper;
 
 class ActiveField extends \yii\bootstrap4\ActiveField
 {
+
+    public $dateOptions = [];
+
     public function init()
     {
         parent::init();
@@ -24,15 +27,21 @@ class ActiveField extends \yii\bootstrap4\ActiveField
         return $this;
     }
 
+    public function autocomplete($value)
+    {
+        $this->inputOptions['autocomplete'] = $value;
+        return $this;
+    }
+
     public function numberInput(): ActiveField
     {
         return $this->input('number');
     }
 
-    public function dateInput(): ActiveField
+    public function dateInput($options = []): ActiveField
     {
-        $attribute = $this->attribute;
-        return $this->input('datetime-local', ['value' => $this->model->$attribute ? date_create($this->model->$attribute)->format(Yii::$app->params['datetime-local']) : '', 'theme' => Select2::THEME_DEFAULT]);
+        $options['value'] = date_create($this->model->{$this->attribute})->format(Yii::$app->params['formDateTimeFormat']);
+        return $this->input('datetime-local', ArrayHelper::merge($this->dateOptions, $options));
     }
 
     public function timeInput(): ActiveField
