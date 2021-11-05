@@ -91,7 +91,7 @@ class ActiveField extends \yii\bootstrap4\ActiveField
                     Html::addCssClass($wrapperOptions, 'custom-control-inline');
                 }
 
-//                $this->addErrorClassIfNeeded($options);
+                //                $this->addErrorClassIfNeeded($options);
                 $html = Html::beginTag('div', $wrapperOptions) . "\n" .
                     Html::checkbox($name, $checked, $options) . "\n";
                 if ($itemCount === $i) {
@@ -103,5 +103,15 @@ class ActiveField extends \yii\bootstrap4\ActiveField
             };
         }
         return parent::checkboxList($items, $options);
+    }
+
+    public function setOption($option, $value)
+    {
+        $this->options[$option] = $value;
+    }
+
+    public function setOptions($options)
+    {
+        $this->options = ArrayHelper::merge($this->options, $options);
     }
 }
