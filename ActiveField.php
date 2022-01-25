@@ -60,6 +60,11 @@ class ActiveField extends \yii\bootstrap4\ActiveField
         return $this->widget(RoundSwitchInput::class, $options);
     }
 
+    public function hiddenInput($options = ['label' => false])
+	{
+		return Html::tag('div', parent::hiddenInput($options), ['class' => 'd-none']);
+	}
+
     public function visible($value)
     {
         if (!$value) {
