@@ -4,9 +4,11 @@
 namespace samuelelonghin\form;
 
 
+use Exception;
 use kartik\select2\Select2;
 use samuelelonghin\form\RoundSwitchInput;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\bootstrap4\Html;
 use yii\helpers\ArrayHelper;
 
@@ -38,35 +40,75 @@ class ActiveField extends \yii\bootstrap4\ActiveField
 		return $this->input('number');
 	}
 
-	public function dateInput($options = []): ActiveField
+	/**
+	 * @param array $options
+	 * @return ActiveField
+	 */
+	public function dateTimeInput(array $options = []): ActiveField
 	{
-		$options['value'] = date_create($this->model->{$this->attribute})->format(Yii::$app->params['formDateTimeFormat']);
+		if (!array_key_exists('value', $options)) {
+			$options['value'] = Yii::$app->formatter->asFormDateTime(date_create($this->model->{$this->attribute}));
+		}
 		return $this->input('datetime-local', ArrayHelper::merge($this->dateOptions, $options));
 	}
 
-	public function timeInput(): ActiveField
+	/**
+	 * @param array $options
+	 * @return ActiveField
+	 */
+	public function dateInput(array $options = []): ActiveField
 	{
-		$attribute = $this->attribute;
-		return $this->input('time', ['value' => $this->model->$attribute ? Yii::$app->formatter->asTime($this->model->$attribute) : '00:00']);
+		if (!array_key_exists('value', $options)) {
+			$options['value'] = Yii::$app->formatter->asFormDate(date_create($this->model->{$this->attribute}));
+		}
+		return $this->input('date', ArrayHelper::merge($this->dateOptions, $options));
 	}
 
+	/**
+	 * @param array $options
+	 * @return ActiveField
+	 */
+	public function timeInput(array $options = []): ActiveField
+	{
+		if (!array_key_exists('value', $options)) {
+			$options['value'] = Yii::$app->formatter->asFormTime(date_create($this->model->{$this->attribute}));
+		}
+		return $this->input('time', ArrayHelper::merge($this->dateOptions, $options));
+	}
+
+	/**
+	 * @throws Exception
+	 */
 	public function select2Input($items, $options = []): ActiveField
 	{
 		return $this->widget(Select2::class, array_merge_recursive(['data' => $items], $options));
 	}
 
-	public function swtchtInput($options = [])
+	/**
+	 * @param array $options
+	 * @return ActiveField
+	 * @throws Exception
+	 */
+	public function switchInput(array $options = []): ActiveField
 	{
 		return $this->widget(RoundSwitchInput::class, $options);
 	}
 
+	/**
+	 * @param array|false[] $options
+	 * @return ActiveField
+	 */
 	public function hiddenInput($options = ['label' => false])
 	{
 		$this->options['class'] = 'd-none';
 		return parent::hiddenInput($options);
 	}
 
-	public function visible($value)
+	/**
+	 * @param $value
+	 * @return $this
+	 */
+	public function visible($value): ActiveField
 	{
 		if (!$value) {
 			$this->template = '';
