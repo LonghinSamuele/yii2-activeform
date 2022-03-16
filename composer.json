@@ -2,6 +2,7 @@
   "name": "samuelelonghin/yii2-activeform",
   "description": "new Yii2 ActiveForm ",
   "type": "yii2-extension",
+  "version":"1.1.0",
   "keywords": [
     "yii2",
     "extension",
