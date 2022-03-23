@@ -8,11 +8,10 @@ use Exception;
 use kartik\select2\Select2;
 use samuelelonghin\form\RoundSwitchInput;
 use Yii;
-use yii\base\InvalidConfigException;
 use yii\bootstrap4\Html;
 use yii\helpers\ArrayHelper;
 
-class ActiveField extends \yii\bootstrap4\ActiveField
+class ActiveField extends \yii\bootstrap5\ActiveField
 {
 
 	public $dateOptions = [];
@@ -20,7 +19,6 @@ class ActiveField extends \yii\bootstrap4\ActiveField
 	public function init()
 	{
 		parent::init();
-		$this->options['class'] = 'form-group';
 	}
 
 	public function placeholder($value)
