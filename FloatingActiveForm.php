@@ -6,5 +6,5 @@ namespace samuelelonghin\form;
 
 class FloatingActiveForm extends BaseActiveForm
 {
-    public $layout = self::LAYOUT_FLOATING;
+    public $type = self::TYPE_FLOATING;
 }

@@ -8,10 +8,10 @@ use Exception;
 use kartik\select2\Select2;
 use samuelelonghin\form\RoundSwitchInput;
 use Yii;
-use yii\bootstrap4\Html;
+use yii\bootstrap5\Html;
 use yii\helpers\ArrayHelper;
 
-class ActiveField extends \yii\bootstrap5\ActiveField
+class ActiveField extends \kartik\form\ActiveField
 {
 
 	public $dateOptions = [];

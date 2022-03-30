@@ -4,7 +4,7 @@
 namespace samuelelonghin\form;
 
 
-class BaseActiveForm extends \yii\bootstrap5\ActiveForm
+class BaseActiveForm extends \kartik\form\ActiveForm
 {
 	public $fieldClass = ActiveField::class;
 
