@@ -6,7 +6,7 @@ namespace samuelelonghin\form;
 
 use Exception;
 use kartik\select2\Select2;
-use samuelelonghin\form\RoundSwitchInput;
+use samuelelonghin\form\inputs\RoundSwitchInput;
 use Yii;
 use yii\bootstrap5\Html;
 use yii\helpers\ArrayHelper;
