@@ -8,7 +8,7 @@ use Exception;
 use kartik\select2\Select2;
 use samuelelonghin\form\inputs\RoundSwitchInput;
 use Yii;
-use yii\bootstrap5\Html;
+use yii\bootstrap4\Html;
 use yii\helpers\ArrayHelper;
 
 class ActiveField extends \kartik\form\ActiveField
@@ -45,7 +45,7 @@ class ActiveField extends \kartik\form\ActiveField
 	public function dateTimeInput(array $options = []): ActiveField
 	{
 		if (!array_key_exists('value', $options)) {
-			$options['value'] = Yii::$app->formatter->asFormDateTime(date_create($this->model->{$this->attribute}));
+			$options['value'] = Yii::$app->formatter->asFormDateTime(date_create( \yii\helpers\Html::getAttributeValue($this->model, $this->attribute)));
 		}
 		return $this->input('datetime-local', ArrayHelper::merge($this->dateOptions, $options));
 	}
@@ -57,7 +57,7 @@ class ActiveField extends \kartik\form\ActiveField
 	public function dateInput(array $options = []): ActiveField
 	{
 		if (!array_key_exists('value', $options)) {
-			$options['value'] = Yii::$app->formatter->asFormDate(date_create($this->model->{$this->attribute}));
+			$options['value'] = Yii::$app->formatter->asFormDate(date_create( \yii\helpers\Html::getAttributeValue($this->model, $this->attribute)));
 		}
 		return $this->input('date', ArrayHelper::merge($this->dateOptions, $options));
 	}
@@ -69,7 +69,7 @@ class ActiveField extends \kartik\form\ActiveField
 	public function timeInput(array $options = []): ActiveField
 	{
 		if (!array_key_exists('value', $options)) {
-			$options['value'] = Yii::$app->formatter->asFormTime(date_create($this->model->{$this->attribute}));
+			$options['value'] = Yii::$app->formatter->asFormTime(date_create( \yii\helpers\Html::getAttributeValue($this->model, $this->attribute)));
 		}
 		return $this->input('time', ArrayHelper::merge($this->dateOptions, $options));
 	}
