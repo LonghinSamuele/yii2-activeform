@@ -167,7 +167,6 @@ class ActiveField extends \kartik\form\ActiveField
     {
         $this->options = ArrayHelper::merge($this->options, $options);
     }
-}
 
 
 }
